@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Microblog</title>
+    <base href="/" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  </head>
+  <body>
+    <header><h1>Microblog<h1></h1></header>
+    <main>
+      <label for="message">What do you want to post?</label>
+      <textarea id="message"></textarea>
+      <div>
+        <label for="otp1">OTP</label>
+        <input id="otp1"></input>
+      </div>
+      <button id="post">Post</button>
+      &nbsp;<span id="error"></span>
+      <hr />
+      <label for="message1">Who do you want to follow?</label>
+      <div>
+        <label for="canister">Canister id:</label>
+        <input id="canister"></input>
+      </div>
+      <div><label for="otp2">OTP</label>
+        <input id="otp2"></input></div>
+      <button id="tofollow">Follow</button>
+      &nbsp;<span id="error1"></span>
+      <hr />
+      <label for="follow">Follow:</label>
+      <section id="follow"></section>
+      <hr />
+      <label for="timeline">Timeline:</label>
+      <section id="timeline"></section>
+      <hr />
+      <label for="posts">My posts:</label>
+      <section id="posts"></section>
+    </main>
+  </body>
+</html>

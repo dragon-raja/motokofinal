@@ -1,0 +1,66 @@
+type Time = int;
+type StreamingStrategy = variant {
+                           Callback:
+                            record {
+                              callback:
+                               func (StreamingCallbackToken) ->
+                                (StreamingCallbackHttpResponse) query;
+                              token: StreamingCallbackToken;
+                            };};
+type StreamingCallbackToken = 
+ record {
+   content_encoding: text;
+   index: nat;
+   key: text;
+   sha256: opt vec nat8;
+ };
+type StreamingCallbackHttpResponse = 
+ record {
+   body: vec nat8;
+   token: opt StreamingCallbackToken;
+ };
+type Message = 
+ record {
+   author: text;
+   "text": text;
+   time: Time;
+ };
+type HttpResponse = 
+ record {
+   body: blob;
+   headers: vec HeaderField;
+   status_code: nat16;
+   streaming_strategy: opt StreamingStrategy;
+ };
+type HttpRequest = 
+ record {
+   body: vec nat8;
+   headers: vec HeaderField;
+   method: text;
+   url: text;
+ };
+type HeaderField = 
+ record {
+   text;
+   text;
+ };
+type FollowInfo = 
+ record {
+   id: text;
+   name: text;
+ };
+service : {
+  follow: (text, text) -> ();
+  follows: () -> (vec FollowInfo);
+  get: () -> (nat) query;
+  get_name: () -> (opt text);
+  greet: (text) -> (text);
+  http_request: (HttpRequest) -> (HttpResponse) query;
+  increment: () -> ();
+  post: (text, text) -> ();
+  posts: () -> (vec Message) query;
+  qsort: (vec int) -> (vec int);
+  set: (nat) -> ();
+  set_name: (text) -> ();
+  timeline: () -> (vec Message);
+}
